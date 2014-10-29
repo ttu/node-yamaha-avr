@@ -11,6 +11,13 @@ function Yamaha(ip){
   this.url = 'http://{ip}/YamahaRemoteControl/ctrl';
 }
 
+Yamaha.prototype.isOnline = function(){
+  var xml = this.commands.basicStatusCommand();
+  return deferredAction(this.getUrl(), xml, function(result){
+    return result.YAMAHA_AV !== undefined;
+  });
+};
+
 Yamaha.prototype.isOn = function(){
   var xml = this.commands.basicStatusCommand();
   return deferredAction(this.getUrl(), xml, function(result){
@@ -18,8 +25,33 @@ Yamaha.prototype.isOn = function(){
   });
 };
 
+Yamaha.prototype.setPower = function(state){
+  var xml;
+  if (state == "on"){
+    xml = this.commands.powerOn();
+  }else{
+    xml = this.commands.powerOff();
+  }
+
+  return deferredAction(this.getUrl(), xml, function(result){
+    return result.YAMAHA_AV.Main_Zone[0].Basic_Status[0].Power_Control[0].Power[0] === "On";
+  });
+};
+
 Yamaha.prototype.getVolume = function(){
   var xml = this.commands.getVolumeCommand();
+  return deferredAction(this.getUrl(), xml, function(result){
+    return result.YAMAHA_AV.Main_Zone[0].Volume[0].Lvl[0].Val[0];
+  });
+};
+
+Yamaha.prototype.setVolume = function(volume){
+
+  // Safety: Do not set volume ever too loud
+  if (volume < 200)
+    volume = 200;
+
+  var xml = this.commands.setVolumeCommand(volume);
   return deferredAction(this.getUrl(), xml, function(result){
     return result.YAMAHA_AV.Main_Zone[0].Volume[0].Lvl[0].Val[0];
   });
@@ -36,8 +68,8 @@ function deferredAction(url, commandXml, parseAction){
 
   promise.then(function (response){
     parseString(response, function (err, result){
-		var res = parseAction(result);
-        deferred.resolve(res);
+      var res = parseAction(result);
+      deferred.resolve(res);
     });
   }, function (error){
     deferred.resolve("No connection");
