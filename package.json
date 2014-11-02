@@ -1,18 +1,27 @@
 {
-  "name": "yamaha",
+  "name": "node-yamaha-avr",
   "version": "0.0.1",
-  "description": "Control Yamaha receiver",
+  "description": "Node.js module for controlling Yamaha receiver",
   "main": "main.js",
   "dependencies": {
     "string-format": "0.2.1",
     "request": "2.47.0",
     "q": "1.0.1",
-    "xml2js": "0.4.4",
+    "xml2js": "0.4.4"
+  },
+  "devDependencies": {
+	"jshint": "^2.5.1",
     "mocha": "2.0.1"
   },
   "scripts": {
-    "test": "mocha"
+    "lint" : "jshint . --exclude node_modules",
+	"unit" : "mocha",
+	"test": "npm run lint && npm run unit"
   },
   "author": "Tomi Tuhkanen",
-  "license": "ISC"
+  "license": "ISC",
+  "repository" : { 
+	"type" : "git", 
+	"url" : "http://github.com/ttu/node-yamaha-avr.git"
+  }
 }
