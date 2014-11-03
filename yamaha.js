@@ -14,7 +14,22 @@ function Yamaha(ip){
 Yamaha.prototype.isOnline = function(){
   var xml = this.commands.basicStatusCommand();
   return deferredAction(this.getUrl(), xml, function(result){
+    // Check that returned xml is in valid Yamaha format
     return result.YAMAHA_AV !== undefined;
+  });
+};
+
+Yamaha.prototype.getStatus = function(){
+  var xml = this.commands.basicStatusCommand();
+  return deferredAction(this.getUrl(), xml, function(result){
+    return result;
+  });
+};
+
+Yamaha.prototype.getSystemConfig = function(){
+  var xml = this.commands.systemConfigCommand();
+  return deferredAction(this.getUrl(), xml, function(result){
+    return result;
   });
 };
 

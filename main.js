@@ -18,6 +18,9 @@ yamaha.isOnline().then(function(isOnline){
       case 's':
         GetState();
         break;
+      case 'c':
+        GetSystemConfig();
+        break;
       case 'p':
         yamaha.setPower(params);
         console.log("Power to: " + params);
@@ -40,13 +43,22 @@ yamaha.isOnline().then(function(isOnline){
   console.log("Amplifier not online");
 });
 
-function GetState()
-{
+function GetState(){
   yamaha.isOn().then(function(result){
-    console.log("State: " + result);
+    console.log("Power on: ", result);
   });
 
   yamaha.getVolume().then(function(result){
-    console.log("Volume: " + result);
+    console.log("Volume: ", result);
+  });
+
+  yamaha.getStatus().then(function(result){
+    console.log("Status: %j", result);
+  });
+}
+
+function GetSystemConfig(){
+  yamaha.getSystemConfig().then(function(result){
+    console.log("System: %j", result);
   });
 }
