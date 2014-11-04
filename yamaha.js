@@ -43,13 +43,26 @@ Yamaha.prototype.isOn = function(){
 Yamaha.prototype.setPower = function(state){
   var xml;
   if (state == "on"){
-    xml = this.commands.powerOn();
+    xml = this.commands.powerOnCommand();
   }else{
-    xml = this.commands.powerOff();
+    xml = this.commands.powerOffCommand();
   }
 
   return deferredAction(this.getUrl(), xml, function(result){
-    return result.YAMAHA_AV.Main_Zone[0].Basic_Status[0].Power_Control[0].Power[0] === "On";
+      return result.YAMAHA_AV.Main_Zone[0].Basic_Status[0].Power_Control[0].Power[0];
+  });
+};
+
+Yamaha.prototype.setMute = function(state){
+  var xml;
+  if (state == "on"){
+    xml = this.commands.muteOnCommand();
+  }else{
+    xml = this.commands.muteOffCommand();
+  }
+
+  return deferredAction(this.getUrl(), xml, function(result){
+      return result.YAMAHA_AV.Main_Zone !== undefined;
   });
 };
 

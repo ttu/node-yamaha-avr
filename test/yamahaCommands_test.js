@@ -41,4 +41,16 @@ describe('Yamaha XML Commands', function(){
     });
   });
 
+describe('Mute Commands', function(){
+  it('should return mute on', function(){
+    var cmd = '<YAMAHA_AV cmd="PUT"><Main_Zone><Volume><Mute>On</Mute></Volume></Main_Zone></YAMAHA_AV>';
+    assert.equal(cmd, yamaha.muteOnCommand());
+  });
+
+  it('should return mute off', function(){
+    var cmd = '<YAMAHA_AV cmd="PUT"><Main_Zone><Volume><Mute>Off</Mute></Volume></Main_Zone></YAMAHA_AV>';
+    assert.equal(cmd, yamaha.muteOffCommand());
+  });
+});
+
 });

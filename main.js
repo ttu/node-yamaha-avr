@@ -21,9 +21,13 @@ yamaha.isOnline().then(function(isOnline){
       case 'c':
         GetSystemConfig();
         break;
+      case 'm':
+        console.log("Mute to: " + params);
+        yamaha.setMute(params);
+        break;
       case 'p':
-        yamaha.setPower(params);
         console.log("Power to: " + params);
+        yamaha.setPower(params);
         break;
       case 'v':
         if (!Number.isInteger(params)){
@@ -31,8 +35,8 @@ yamaha.isOnline().then(function(isOnline){
           break;
         }
 
-        yamaha.setVolume(params);
         console.log("Volume to: " + params);
+        yamaha.setVolume(params);
         break;
       default:
         console.log("Unknown command");
