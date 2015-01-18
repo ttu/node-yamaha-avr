@@ -41,16 +41,28 @@ describe('Yamaha XML Commands', function(){
     });
   });
 
-describe('Mute Commands', function(){
-  it('should return mute on', function(){
-    var cmd = '<YAMAHA_AV cmd="PUT"><Main_Zone><Volume><Mute>On</Mute></Volume></Main_Zone></YAMAHA_AV>';
-    assert.equal(cmd, yamaha.muteOnCommand());
+  describe('Mute Commands', function(){
+    it('should return mute on', function(){
+      var cmd = '<YAMAHA_AV cmd="PUT"><Main_Zone><Volume><Mute>On</Mute></Volume></Main_Zone></YAMAHA_AV>';
+      assert.equal(cmd, yamaha.muteOnCommand());
+    });
+
+    it('should return mute off', function(){
+      var cmd = '<YAMAHA_AV cmd="PUT"><Main_Zone><Volume><Mute>Off</Mute></Volume></Main_Zone></YAMAHA_AV>';
+      assert.equal(cmd, yamaha.muteOffCommand());
+    });
   });
 
-  it('should return mute off', function(){
-    var cmd = '<YAMAHA_AV cmd="PUT"><Main_Zone><Volume><Mute>Off</Mute></Volume></Main_Zone></YAMAHA_AV>';
-    assert.equal(cmd, yamaha.muteOffCommand());
+  describe('Set Input Commands', function(){
+    it('should return HDMI1', function(){
+      var cmd = '<YAMAHA_AV cmd="PUT"><Main_Zone><Input><Input_Sel>HDMI1</Input_Sel></Input></Main_Zone></YAMAHA_AV>';
+      assert.equal(cmd, yamaha.setInputCommand('HDMI1'));
+    });
+
+    it('should return AV2', function(){
+      var cmd = '<YAMAHA_AV cmd="PUT"><Main_Zone><Input><Input_Sel>AV2</Input_Sel></Input></Main_Zone></YAMAHA_AV>';
+      assert.equal(cmd, yamaha.setInputCommand('AV2'));
+    });
   });
-});
 
 });

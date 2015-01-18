@@ -85,6 +85,15 @@ Yamaha.prototype.setVolume = function(volume){
   });
 };
 
+Yamaha.prototype.setInput = function(input_name){
+  var xml = this.commands.setInputCommand(input_name);
+
+  return deferredAction(this.getUrl(), xml, function(result){
+	// Responses Input_Sel is ''
+    return result.YAMAHA_AV.Main_Zone[0].Input[0].Input_Sel[0] !== undefined;
+  });
+};
+
 Yamaha.prototype.getUrl = function(){
   return this.url.format({ip : this.ip});
 };

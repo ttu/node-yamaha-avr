@@ -38,6 +38,10 @@ yamaha.isOnline().then(function(isOnline){
         console.log("Volume to: " + params);
         yamaha.setVolume(params);
         break;
+      case 'i':
+          console.log("Set intput to: " + params);
+          yamaha.setInput(params);
+          break;
       default:
         console.log("Unknown command");
         break;
