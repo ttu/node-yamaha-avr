@@ -109,7 +109,7 @@ function deferredAction(url, commandXml, parseAction){
       deferred.resolve(res);
     });
   }, function (error){
-    deferred.resolve("No connection");
+    deferred.reject("No connection");
   });
 
   return deferred.promise;

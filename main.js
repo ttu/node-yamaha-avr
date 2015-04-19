@@ -10,7 +10,7 @@ var yamaha = new Yamaha(ip);
 
 yamaha.isOnline().then(function(isOnline){
   if (isOnline === false){
-    console.log("Amplifier not online");
+    console.log("Device returned unknown response");
   }
   else{
     switch(cmd)
