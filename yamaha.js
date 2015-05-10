@@ -49,7 +49,7 @@ Yamaha.prototype.setPower = function(state){
   }
 
   return deferredAction(this.getUrl(), xml, function(result){
-      return result.YAMAHA_AV.Main_Zone[0].Basic_Status[0].Power_Control[0].Power[0];
+      return result.YAMAHA_AV.Main_Zone[0].Power_Control[0].Power[0];
   });
 };
 
@@ -104,8 +104,8 @@ function deferredAction(url, commandXml, parseAction){
   var promise = getCommandReply(url, commandXml);
 
   promise.then(function (response){
-    parseString(response, function (err, result){
-      var res = parseAction(result);
+    parseString(response, function (err, result){     
+      var res = parseAction(result);    
       deferred.resolve(res);
     });
   }, function (error){
