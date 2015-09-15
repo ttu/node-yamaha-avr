@@ -59,7 +59,7 @@ YamahaCommands.prototype.getVolumeCommand = function(){
 
 YamahaCommands.prototype.setVolumeCommand = function(volume){
   var cmd = 'PUT';
-  var volPayload = this.setVolumeValue.format({val : volume, exp : '1', unit :'db'});
+  var volPayload = this.setVolumeValue.format({val : volume, exp : '1', unit : 'dB'});
   var request = this.volumeLevel.format({value : volPayload});
 
   var pload = this.mainZoneWrapper.format({request_text : request});
