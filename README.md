@@ -25,7 +25,7 @@ node main.js 192.168.1.40 p on
 node main.js 192.168.1.40 p off
 node main.js 192.168.1.40 m on
 node main.js 192.168.1.40 m off
-node main.js 192.168.1.40 v 320
+node main.js 192.168.1.40 v -550
 node main.js 192.168.1.40 s
 node main.js 192.168.1.40 c
 node main.js 192.168.1.40 i HDMI1
