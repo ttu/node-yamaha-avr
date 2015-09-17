@@ -74,11 +74,6 @@ Yamaha.prototype.getVolume = function(){
 };
 
 Yamaha.prototype.setVolume = function(volume){
-
-  // Safety: Do not set volume ever too loud
-  if (volume < 200)
-    volume = 200;
-
   var xml = this.commands.setVolumeCommand(volume);
   return deferredAction(this.getUrl(), xml, function(result){
     return result.YAMAHA_AV.Main_Zone[0].Volume[0].Lvl[0].Val[0];
