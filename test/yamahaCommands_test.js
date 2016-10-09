@@ -36,7 +36,7 @@ describe('Yamaha XML Commands', function(){
     });
 
     it('should return set volume', function(){
-      var cmd = '<YAMAHA_AV cmd="PUT"><Main_Zone><Volume><Lvl><Val>210</Val><Exp>1</Exp><Unit>db</Unit></Lvl></Volume></Main_Zone></YAMAHA_AV>';
+      var cmd = '<YAMAHA_AV cmd="PUT"><Main_Zone><Volume><Lvl><Val>210</Val><Exp>1</Exp><Unit>dB</Unit></Lvl></Volume></Main_Zone></YAMAHA_AV>';
       assert.equal(cmd, yamaha.setVolumeCommand(210));
     });
   });
