@@ -20,11 +20,4 @@ describe('Yamaha Receiver', function(){
   });
 */
 
-  describe('Get Url', function(){
-    it('should return http://'+ip+'/YamahaRemoteControl/ctrl', function(){
-      assert.equal('http://'+ip+'/YamahaRemoteControl/ctrl', yamaha.getUrl());
-    });
-  });
-
-
 });
