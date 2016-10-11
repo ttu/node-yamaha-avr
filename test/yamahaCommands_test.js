@@ -65,4 +65,11 @@ describe('Yamaha XML Commands', function(){
     });
   });
 
+  describe('Set Scene Commands', function(){
+    it('should return Scene 2', function(){
+      var cmd = '<YAMAHA_AV cmd="PUT"><Main_Zone><Scene><Scene_Sel>Scene 2</Scene_Sel></Scene></Main_Zone></YAMAHA_AV>';
+      assert.equal(cmd, yamaha.setSceneCommand('2'));
+    });
+  });
+
 });
