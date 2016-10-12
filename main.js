@@ -46,6 +46,10 @@ yamaha.discover()
             console.log("Set intput to: " + params);
             yamaha.setInput(params);
             break;
+        case 'e':
+            console.log("Set scene to: " + params);
+            yamaha.setScene(params);
+            break;
         default:
           console.log("Unknown command");
           break;

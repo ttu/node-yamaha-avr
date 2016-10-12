@@ -18,6 +18,7 @@ function YamahaCommands()
   this.muteControl = '<Volume><Mute>{state}</Mute></Volume>';
 
   this.setInput = '<Input><Input_Sel>{input}</Input_Sel></Input>';
+  this.setScene = '<Scene><Scene_Sel>Scene {scene}</Scene_Sel></Scene>';
 }
 
 YamahaCommands.prototype.basicStatusCommand = function(){
@@ -85,6 +86,14 @@ YamahaCommands.prototype.muteCommand = function(selectedState){
 YamahaCommands.prototype.setInputCommand = function(input_name){
   var cmd = 'PUT';
   var request = this.setInput.format({input : input_name});
+  var pload = this.mainZoneWrapper.format({request_text : request});
+
+  return this.commandWrapper.format({command : cmd, payload : pload});
+};
+
+YamahaCommands.prototype.setSceneCommand = function(scene_num){
+  var cmd = 'PUT';
+  var request = this.setScene.format({scene : scene_num});
   var pload = this.mainZoneWrapper.format({request_text : request});
 
   return this.commandWrapper.format({command : cmd, payload : pload});

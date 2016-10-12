@@ -92,6 +92,15 @@ Yamaha.prototype.setInput = function(input_name){
   });
 };
 
+Yamaha.prototype.setScene = function(scene_num){
+  var xml = this.commands.setSceneCommand(scene_num);
+
+  return deferredAction(this.discovery, xml, function(result){
+    // Responses Scene_Sel is ''
+    return result.YAMAHA_AV.Main_Zone[0].Scene[0].Scene_Sel[0] !== undefined;
+  });
+};
+
 function deferredAction(discovery, commandXml, parseAction){
   var deferred = Q.defer();
 
