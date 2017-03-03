@@ -1,6 +1,12 @@
 node-yamaha-avr
 ===============
 
+This was part of a test project for adding a new device to The Thing System home automation platform.
+
+If you are looking for a node.js library for controlling Yamaha receivers, I recommend you to check e.g. <https://github.com/PSeitz/yamaha-nodejs>.
+
+---
+
 Node.js module for controlling Yamaha RX-V-series receiver (HTTP API)
 
 > npm install
